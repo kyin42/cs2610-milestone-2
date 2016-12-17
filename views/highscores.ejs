@@ -25,6 +25,7 @@
                         if(hasscore){ %>
                             <p>Nickname: <%= nick %>
                             <p>Score: <%= score %>
+                                <a href="/game" class="btn btn-primary">retry</a>
                         <% } %>
                         
 
@@ -50,7 +51,9 @@
                             <% } %>
 
                         </table>
-
+                        <% if(!hasscore){ %>
+                            <a href="/" class="btn btn-primary">play</a>
+                        <% } %>
 
 
                     <% } else { %>
