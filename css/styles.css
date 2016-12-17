@@ -1,3 +1,8 @@
 .cover{
 	vertical-align: middle;
 }
+
+html, body, .container, .row, .cover{
+	height: 100%;
+	width: 100%;
+}
