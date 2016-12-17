@@ -1,0 +1,19 @@
+{
+  "name": "milestone2",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "keywords": [],
+  "author": "kyin42",
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "^3.3.4",
+    "body-parser": "^1.15.2",
+    "ejs": "^2.5.5",
+    "express": "^4.14.0",
+    "pg": "^6.1.2",
+    "pg-promise": "^3.2.3"
+  }
+}
