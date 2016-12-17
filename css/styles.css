@@ -1,8 +1,9 @@
 .cover{
 	vertical-align: middle;
+	display: table-cell;
 }
 
-html, body, .container, .row, .cover{
+html, body, .display-table{
 	height: 100%;
 }
 
