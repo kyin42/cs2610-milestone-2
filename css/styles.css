@@ -4,5 +4,17 @@
 
 html, body, .container, .row, .cover{
 	height: 100%;
-	width: 100%;
+}
+
+.center{
+	vertical-align: middle;
+}
+
+.display-table{
+	display: table;
+}
+
+body {
+	background-color: #333;
+	color: white;
 }
