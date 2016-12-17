@@ -20,13 +20,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-4 col-offset-4">
-
-
-                    db.any('select * from scores')
-    .then(function (data) {
-        res.render("./highscores.ejs", {dbsuccess: true, hasscore: true, results: data, nick: req.session.nick, score: req.session.score}); 
-        res.render("./highscores.ejs", {dbsuccess: true, hasscore: false, results: data});   
-        res.render("./highscores.ejs", {dbsuccess: false});
+                    
                     <% if(dbsuccess){ 
                         if(hasscore){ %>
                             <p>Nickname: <%= nick %>
@@ -41,7 +35,7 @@
                                 <th>Score</th>
                             </tr>
                             <% var i = 0;
-                             for(var x in data) { i++; if(i>=10)break; %>
+                             for(var x in results) { i++; if(i>=10)break; %>
                                 <tr>
                                     <th><%= i+1 %></th>
                                     <td><%= x.nick %></td>
