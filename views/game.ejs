@@ -20,11 +20,15 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-4 col-offset-4">
-                        <form action="/" method="post" class="control-form">
-                          <div class="form-group">
-                            <label>Nickname:</label>
-                            <input type="text" class="form-control" name="nick" id="nick" placeholder="Nick">
-                          </div>
+                        <h3>The H-game</h3>
+                        <p>Nickname: <%= nick %></p>
+                        <p>Score: <div class="score">0</div></p>
+
+                        <div class="h-button btn btn-primary">H</div>
+
+                        <form action="/game" method="post" class="control-form">
+                          <input type="hidden" name="nick" value="<%= nick %>">
+                          <input type="hidden" class="score-form" name="score" value="0">
                           <button type="submit" class="btn btn-default">Submit</button>
                         </form>
                     </div>
@@ -33,6 +37,18 @@
         </div>
     </div>
 
-</body>
+    
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+      <script type="text/javascript">
+          $(document).ready(function(){
+            var score = 0;
+            $('.h-button').click(function(){
+                score++;
+                $('.score').html(score);
+                $('.score-from').val(score);
+            });
+          });
+      </script> 
 
+</body>
 </html>

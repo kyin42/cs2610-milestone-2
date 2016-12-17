@@ -20,13 +20,49 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-4 col-offset-4">
-                        <form action="/" method="post" class="control-form">
-                          <div class="form-group">
-                            <label>Nickname:</label>
-                            <input type="text" class="form-control" name="nick" id="nick" placeholder="Nick">
-                          </div>
-                          <button type="submit" class="btn btn-default">Submit</button>
-                        </form>
+
+
+                    db.any('select * from scores')
+    .then(function (data) {
+        res.render("./highscores.ejs", {dbsuccess: true, hasscore: true, results: data, nick: req.session.nick, score: req.session.score}); 
+        res.render("./highscores.ejs", {dbsuccess: true, hasscore: false, results: data});   
+        res.render("./highscores.ejs", {dbsuccess: false});
+                    <% if(dbsuccess){ 
+                        if(hasscore){ %>
+                            <p>Nickname: <%= nick %>
+                            <p>Score: <%= score %>
+                        <% } %>
+                        
+
+                        <table class="table">
+                            <tr>
+                                <th></th>
+                                <th>Nickname</th>
+                                <th>Score</th>
+                            </tr>
+                            <% var i = 0;
+                             for(var x in data) { i++; if(i>=10)break; %>
+                                <tr>
+                                    <th><%= i+1 %></th>
+                                    <td><%= x.nick %></td>
+                                    <td><%= x.score %></td>
+                                </tr>
+                             <% } for(;i<10;i++) { %>
+                             <tr>
+                                <th><%= i+1 %></th>
+                                <th></th>
+                                <th></th>
+                             </tr>
+                            <% } %>
+
+                        </table>
+
+
+
+                    <% } else { %>
+                        <p>There was a problem with the database.</p>
+    
+                    <% } %>
                     </div>
                 </div>
             </div>
