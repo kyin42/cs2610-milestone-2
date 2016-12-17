@@ -33,7 +33,7 @@ app.get('\/((index(\.html)?)?)', function (req, res) {
 });
 
 app.use(session({
-  secret: process.env.COOKIE_SECRET,
+  secret: "isThisSecretEnough234asdf",
   name: 'userId',
   resave: true,
   saveUninitialized: false,
