@@ -35,13 +35,13 @@
                                 <th>Score</th>
                             </tr>
                             <% var i = 0;
-                             for(var x in results) { console.log(results + " " +x) %>
+                             for(;i<results.length;i++) { console.log(results + " " + results[i]) %>
                                 <tr>
                                     <th><%= i+1 %></th>
-                                    <td><%= x.nick %></td>
-                                    <td><%= x.score %></td>
+                                    <td><%= results[i].nick %></td>
+                                    <td><%= results[i].score %></td>
                                 </tr>
-                             <% i++; if(i>=10)break;  } for(;i<10;i++) { %>
+                             <% } for(;i<10;i++) { %>
                              <tr>
                                 <th><%= i+1 %></th>
                                 <th></th>
