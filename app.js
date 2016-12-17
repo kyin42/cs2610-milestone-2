@@ -71,7 +71,7 @@ app.post('\/game', function (req, res) {
 });
 
 app.get('\/highscores', function (req, res) {
-  db.any('select * from scores')
+  db.any('select * from scores order by score')
     .then(function (data) {
       if(req.session.name != null){
         res.render("./highscores.ejs", {dbsuccess: true, hasscore: true, results: data, nick: req.session.nick, score: req.session.score}); 
