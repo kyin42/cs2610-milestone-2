@@ -59,7 +59,7 @@ app.post('\/game', function (req, res) {
       'values($1, $2)',
     [req.body.nick, parseInt(req.body.score)])
     .then(function () {
-      res.redirect('/highscores'});
+      res.redirect('/highscores');
     })
     .catch(function (err) {
       console.log("error form db: " + err);
