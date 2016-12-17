@@ -1,13 +1,8 @@
-DROP DATABASE IF EXISTS blog;
-CREATE DATABASE blog;
-
-\c blog;
-
-CREATE TABLE posts (
+CREATE TABLE scores (
   ID SERIAL PRIMARY KEY,
-  name VARCHAR,
-  content TEXT
+  nick VARCHAR,
+  score BIGINT
 );
 
-INSERT INTO posts (name, content)
-  VALUES ('Test post', 'test post content');
+INSERT INTO scores (nick, score)
+  VALUES ('kyin42', 24);

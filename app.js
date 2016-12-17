@@ -31,6 +31,57 @@ app.get('\/((index(\.html)?)?)', function (req, res) {
     res.render("./index.ejs");
 });
 
+app.use(session({
+  secret: process.env.COOKIE_SECRET,
+  name: 'userId',
+  resave: true,
+  saveUninitialized: false,
+  secure: true,
+  cookie: { maxAge: 60 * 60 * 1000 } // 30 days
+}));
+
+
+app.post('\/', function (req, res) {
+  req.session.name = req.body.nick;
+  res.redirect('/game');
+});
+
+app.get('\/game', function (req, res) {
+  if(req.session.name != null){
+    res.render("./game.ejs", {nick: req.session.name});
+  }
+});
+
+
+app.post('\/game', function (req, res) {
+  req.session.score = parseInt(req.body.score);
+  db.none('insert into scores(nick, score)' +
+      'values($1, $2)',
+    [req.body.nick, parseInt(req.body.score)])
+    .then(function () {
+      res.redirect('/highscores'});
+    })
+    .catch(function (err) {
+      console.log("error form db: " + err);
+        res.send("something went wrong");
+    });
+});
+
+app.get('\/highscores', function (req, res) {
+  db.any('select * from scores')
+    .then(function (data) {
+      if(req.session.name != null){
+        res.render("./highscores.ejs", {dbsuccess: true, hasscore: true, results: data, nick: req.session.nick, score: req.session.score}); 
+      }
+      else{
+        res.render("./highscores.ejs", {dbsuccess: true, hasscore: false, results: data});   
+      }
+    })
+    .catch(function (err) {
+      console.log("error form db: " + err);
+        res.render("./highscores.ejs", {dbsuccess: false});
+    });
+});
 
 /* 
 
