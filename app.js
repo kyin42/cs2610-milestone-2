@@ -50,6 +50,8 @@ app.post('\/', function (req, res) {
 app.get('\/game', function (req, res) {
   if(req.session.name != null){
     res.render("./game.ejs", {nick: req.session.name});
+  } else{
+    res.redirect('/');
   }
 });
 
